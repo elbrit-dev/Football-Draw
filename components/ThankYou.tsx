@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ElbritLogo from "./ElbritLogo";
-import Flag from "./Flag";
+import TeamFlag from "./TeamFlag";
 import { fireConfetti } from "@/lib/confetti";
 import { WorldCupEntry } from "@/lib/types";
 
@@ -49,7 +49,7 @@ export default function ThankYou({ data }: ThankYouProps) {
         <div className="tyr r3" />
         <div className="ty-inner">
           <span className="ty-flag">
-            <Flag code={data.teamCode} />
+            <TeamFlag code={data.teamCode} />
           </span>
         </div>
       </div>

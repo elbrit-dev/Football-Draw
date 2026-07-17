@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import ElbritLogo from "./ElbritLogo";
 import Flag from "./Flag";
 import Avatar from "./Avatar";
 import { fireConfetti } from "@/lib/confetti";
@@ -35,6 +34,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
 
   useGSAP(
     () => {
+      if (typeof window !== "undefined" && window.location.search.includes("noanim")) return;
       gsap.from(".pick-anim", {
         y: 18,
         opacity: 0,
@@ -56,24 +56,28 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
 
   return (
     <div className="pick wide" ref={root}>
-      <div className="logo-row pick-anim">
-        <ElbritLogo height={38} />
-      </div>
-
-      <p className="eyebrow pick-anim">The Champion&rsquo;s Call · 2026</p>
-      <h1 className="pick-anim">
-        Predict the <span>World Cup Winners</span>
-      </h1>
-      <p className="sub pick-anim">
-        Get <b>all 4 Winners right</b> and win amazing prizes — winners announced after the World Cup 🏆
-      </p>
-
-      <div className="ball-hero pick-anim">
-        <Image src="/elbrit-ball.png" alt="Elbrit football" width={112} height={112} priority className="ball-img" />
+      <div className="pick-head pick-anim">
+        <Image
+          src="/elbrit-ball.png"
+          alt="Elbrit football"
+          width={96}
+          height={96}
+          priority
+          className="ball-img"
+        />
+        <div className="pick-head-text">
+          <p className="eyebrow">The Champion&rsquo;s Call · 2026</p>
+          <h1>
+            Predict the <span>FIFA World Cup Winners</span>
+          </h1>
+          <p className="sub">
+            Get <b>all 4 Winners right</b> and win amazing prizes — winners announced after the World Cup 🏆
+          </p>
+        </div>
       </div>
 
       {/* Q1 — Champion */}
-      <section className="qblock pick-anim">
+      <section className="qblock champ-block pick-anim">
         <div className="qhead">
           <span className="qicon">🏆</span>
           <div className="qmeta">
@@ -92,7 +96,11 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
               onClick={() => !locked && setTeam(t)}
             >
               <span className="team-flag">
-                <Flag code={t.code} />
+                {t.flag ? (
+                  <Image src={t.flag} alt={`${t.name} flag`} fill sizes="240px" className="team-flag-img" />
+                ) : (
+                  <Flag code={t.code} />
+                )}
               </span>
               <span className="team-name">{t.name}</span>
             </button>
@@ -100,35 +108,33 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
         </div>
       </section>
 
-      {/* Q2 — Golden Boot */}
-      <PlayerQuestion
-        icon="👟"
-        title="Golden Boot"
-        sub="Top scorer of the tournament"
-        options={GOLDEN_BOOT}
-        selected={boot}
-        onSelect={(o) => !locked && setBoot(o)}
-      />
-
-      {/* Q3 — Golden Ball */}
-      <PlayerQuestion
-        icon="⚽"
-        title="Golden Ball"
-        sub="Best player of the tournament"
-        options={GOLDEN_BALL}
-        selected={ball}
-        onSelect={(o) => !locked && setBall(o)}
-      />
-
-      {/* Q4 — Golden Glove */}
-      <PlayerQuestion
-        icon="🧤"
-        title="Golden Glove"
-        sub="Best goalkeeper of the tournament"
-        options={GOLDEN_GLOVE}
-        selected={glove}
-        onSelect={(o) => !locked && setGlove(o)}
-      />
+      {/* Q2–Q4 — player awards, side by side */}
+      <div className="award-row">
+        <PlayerQuestion
+          icon="👟"
+          title="Golden Boot"
+          sub="Top scorer"
+          options={GOLDEN_BOOT}
+          selected={boot}
+          onSelect={(o) => !locked && setBoot(o)}
+        />
+        <PlayerQuestion
+          icon="⚽"
+          title="Golden Ball"
+          sub="Best player"
+          options={GOLDEN_BALL}
+          selected={ball}
+          onSelect={(o) => !locked && setBall(o)}
+        />
+        <PlayerQuestion
+          icon="🧤"
+          title="Golden Glove"
+          sub="Best goalkeeper"
+          options={GOLDEN_GLOVE}
+          selected={glove}
+          onSelect={(o) => !locked && setGlove(o)}
+        />
+      </div>
 
       <p className={`pick-progress pick-anim ${all ? "ready" : ""}`}>
         {all ? "All 4 picks ready — lock them in!" : `${done} of 4 predictions chosen`}
@@ -191,7 +197,7 @@ function PlayerQuestion({
           <button
             key={o.id}
             type="button"
-            className="pl-row"
+            className="pl-card"
             aria-pressed={selected?.id === o.id}
             onClick={() => onSelect(o)}
           >
@@ -205,7 +211,6 @@ function PlayerQuestion({
                 {o.country}
               </span>
             </span>
-            <span className="pl-radio" aria-hidden="true" />
           </button>
         ))}
       </div>
