@@ -10,8 +10,8 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Predict the World Cup Winners · Elbrit",
-  description: "Get all 4 Winners right — Champion, Golden Boot, Golden Ball & Golden Glove — and lock in your Elbrit World Cup prediction.",
+  title: "Predict the FIFA World Cup Winners · Elbrit",
+  description: "Get all 4 Winners right — Champion, Golden Boot, Golden Ball & Golden Glove — and lock in your Elbrit FIFA World Cup prediction.",
 };
 
 export const viewport: Viewport = {

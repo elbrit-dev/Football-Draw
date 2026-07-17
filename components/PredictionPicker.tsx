@@ -63,7 +63,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
 
       <p className="eyebrow pick-anim">The Champion&rsquo;s Call · 2026</p>
       <h1 className="pick-anim">
-        Predict the <span>World Cup Winners</span>
+        Predict the <span>FIFA World Cup Winners</span>
       </h1>
       <p className="sub pick-anim">
         Get <b>all 4 Winners right</b> and win amazing prizes — winners announced after the World Cup 🏆

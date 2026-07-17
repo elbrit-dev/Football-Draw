@@ -54,6 +54,8 @@ export default function ThankYou({ data }: ThankYouProps) {
         </div>
       </div>
 
+      <p className="ty-team ty-reveal">{data.team}</p>
+
       <p className="ty1 ty-reveal">Predictions locked,</p>
       <p className="ty2 ty-reveal">{firstName(data.name)}</p>
       <p className="ty3 ty-reveal">
