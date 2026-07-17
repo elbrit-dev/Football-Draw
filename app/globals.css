@@ -696,7 +696,6 @@ h1 span { color: var(--red); }
   .kn { font-size: 20px; }
   .btn-primary { margin-top: 12px; padding: 15px; }
   .ball-img { width: 116px; height: 116px; }
-  .team-flag { height: 74px; }
 }
 
 /* ─── Football hero ────────────────────────────────────── */
@@ -889,14 +888,18 @@ h1 span { color: var(--red); }
 .team-card:hover { transform: translateY(-3px); border-color: rgba(255, 255, 255, 0.2); }
 .team-card:active { transform: scale(0.98); }
 .team-flag {
+  position: relative;
   display: block;
   width: 100%;
-  height: 82px;
+  /* 3:2 matches the real flag artwork, so the whole flag (both red bands +
+     emblem) is shown with object-fit: cover and no cropping. */
+  aspect-ratio: 3 / 2;
   border-radius: 11px;
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
 }
 .team-flag svg { display: block; width: 100%; height: 100%; }
+.team-flag img { border-radius: inherit; }
 .team-name {
   font-size: 14px;
   font-weight: 700;
@@ -958,6 +961,7 @@ h1 span { color: var(--red); }
   margin: 18px 0 22px;
 }
 .team-badge-flag {
+  position: relative;
   flex-shrink: 0;
   width: 64px;
   height: 44px;
@@ -966,9 +970,11 @@ h1 span { color: var(--red); }
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
 }
 .team-badge-flag svg { display: block; width: 100%; height: 100%; }
+.team-badge-flag img { object-fit: cover; }
 
 /* ─── Thank-you flag inside the ring ───────────────────── */
 .ty-flag {
+  position: relative;
   display: block;
   width: 74px;
   height: 50px;
@@ -976,6 +982,7 @@ h1 span { color: var(--red); }
   overflow: hidden;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
 }
+.ty-flag img { object-fit: cover; }
 .ty-flag svg { display: block; width: 100%; height: 100%; }
 
 @media (prefers-reduced-motion: reduce) {

@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ElbritLogo from "./ElbritLogo";
-import Flag from "./Flag";
+import TeamFlag from "./TeamFlag";
 import Select from "./Select";
 import { Predictions, WorldCupEntry, SPECIALISATIONS } from "@/lib/types";
 
@@ -210,7 +210,7 @@ export default function WizardForm({ picks, onSuccess, onBack }: WizardFormProps
 
       <div className="team-badge">
         <span className="team-badge-flag">
-          <Flag code={team.code} />
+          <TeamFlag code={team.code} />
         </span>
         <div className="ntext">
           <b>Your 4 predictions are locked</b>

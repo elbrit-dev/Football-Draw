@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ElbritLogo from "./ElbritLogo";
 import Flag from "./Flag";
+import TeamFlag from "./TeamFlag";
 import Avatar from "./Avatar";
 import { fireConfetti } from "@/lib/confetti";
 import {
@@ -92,7 +93,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
               onClick={() => !locked && setTeam(t)}
             >
               <span className="team-flag">
-                <Flag code={t.code} />
+                <TeamFlag code={t.code} />
               </span>
               <span className="team-name">{t.name}</span>
             </button>
