@@ -1,12 +1,13 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import Image from "next/image";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import ElbritLogo from "./ElbritLogo";
 import Flag from "./Flag";
 import TeamFlag from "./TeamFlag";
+import AwardIcon from "./AwardIcon";
 import Avatar from "./Avatar";
 import { fireConfetti } from "@/lib/confetti";
 import {
@@ -103,7 +104,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
 
       {/* Q2 — Golden Boot */}
       <PlayerQuestion
-        icon="👟"
+        icon={<AwardIcon kind="boot" />}
         title="Golden Boot"
         sub="Top scorer of the tournament"
         options={GOLDEN_BOOT}
@@ -113,7 +114,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
 
       {/* Q3 — Golden Ball */}
       <PlayerQuestion
-        icon="⚽"
+        icon={<AwardIcon kind="ball" />}
         title="Golden Ball"
         sub="Best player of the tournament"
         options={GOLDEN_BALL}
@@ -123,7 +124,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
 
       {/* Q4 — Golden Glove */}
       <PlayerQuestion
-        icon="🧤"
+        icon={<AwardIcon kind="glove" />}
         title="Golden Glove"
         sub="Best goalkeeper of the tournament"
         options={GOLDEN_GLOVE}
@@ -170,7 +171,7 @@ function PlayerQuestion({
   selected,
   onSelect,
 }: {
-  icon: string;
+  icon: ReactNode;
   title: string;
   sub: string;
   options: PlayerOption[];

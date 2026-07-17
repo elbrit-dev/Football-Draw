@@ -753,6 +753,7 @@ h1 span { color: var(--red); }
   background: rgba(225, 27, 34, 0.12);
   border: 1px solid rgba(225, 27, 34, 0.28);
 }
+.qicon svg { width: 24px; height: 24px; display: block; filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35)); }
 .qmeta { flex: 1; text-align: left; }
 .qtitle { font-size: 16px; font-weight: 800; color: #fff; line-height: 1.1; }
 .qsub { font-size: 12px; color: var(--txt-mute); margin-top: 2px; }
