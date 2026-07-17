@@ -1,7 +1,18 @@
 interface FlagProps {
-  /** 3-letter code: ESP, ARG, FRA, NOR, ENG, MAR, BRA, BEL. */
+  /** 3-letter code: ESP, ARG, FRA, NOR, ENG, MAR, BRA, BEL, CPV. */
   code: string;
   className?: string;
+}
+
+/** Points string for a 5-pointed star centred at (cx, cy). */
+function star(cx: number, cy: number, ro: number, ri: number): string {
+  const pts: string[] = [];
+  for (let i = 0; i < 10; i++) {
+    const r = i % 2 === 0 ? ro : ri;
+    const a = (-90 + i * 36) * (Math.PI / 180);
+    pts.push(`${(cx + r * Math.cos(a)).toFixed(2)},${(cy + r * Math.sin(a)).toFixed(2)}`);
+  }
+  return pts.join(" ");
 }
 
 /**
@@ -79,6 +90,20 @@ export default function Flag({ code, className }: FlagProps) {
           <rect width="90" height="60" fill="#009C3B" />
           <polygon points="45,7 83,30 45,53 7,30" fill="#FFDF00" />
           <circle cx="45" cy="30" r="12.5" fill="#002776" />
+        </>
+      )}
+      {code === "CPV" && (
+        <>
+          <rect width="90" height="60" fill="#003893" />
+          <rect y="30" width="90" height="5" fill="#fff" />
+          <rect y="35" width="90" height="5" fill="#CF2027" />
+          <rect y="40" width="90" height="5" fill="#fff" />
+          {Array.from({ length: 10 }, (_, i) => {
+            const a = (-90 + i * 36) * (Math.PI / 180);
+            const cx = 33.75 + 7 * Math.cos(a);
+            const cy = 37.5 + 7 * Math.sin(a);
+            return <polygon key={i} points={star(cx, cy, 1.9, 0.78)} fill="#F7D116" />;
+          })}
         </>
       )}
     </svg>

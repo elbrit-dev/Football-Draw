@@ -31,24 +31,25 @@ export const GOLDEN_BOOT: PlayerOption[] = [
   { id: "bellingham", name: "Jude Bellingham", country: "England", countryCode: "ENG" },
 ];
 
-/** Golden Ball — best player candidates (from the assists table). */
+/** Golden Ball — best player candidates. */
 export const GOLDEN_BALL: PlayerOption[] = [
   { id: "olise", name: "Michael Olise", country: "France", countryCode: "FRA" },
-  { id: "brahim", name: "Brahim Díaz", country: "Morocco", countryCode: "MAR" },
-  { id: "bruno", name: "Bruno Guimarães", country: "Brazil", countryCode: "BRA" },
   { id: "messi", name: "Lionel Messi", country: "Argentina", countryCode: "ARG" },
-  { id: "odegaard", name: "Martin Ødegaard", country: "Norway", countryCode: "NOR" },
+  { id: "mbappe", name: "Kylian Mbappé", country: "France", countryCode: "FRA" },
+  { id: "haaland", name: "Erling Haaland", country: "Norway", countryCode: "NOR" },
+  { id: "yamal", name: "Lamine Yamal", country: "Spain", countryCode: "ESP" },
+  { id: "bellingham", name: "Jude Bellingham", country: "England", countryCode: "ENG" },
+  { id: "rodri", name: "Rodri", country: "Spain", countryCode: "ESP" },
 ];
 
 /** Golden Glove — best goalkeeper candidates. */
 export const GOLDEN_GLOVE: PlayerOption[] = [
+  { id: "usimon", name: "Unai Simón", country: "Spain", countryCode: "ESP" },
+  { id: "vozinha", name: "Vozinha", country: "Cape Verde", countryCode: "CPV" },
   { id: "emartinez", name: "Emiliano Martínez", country: "Argentina", countryCode: "ARG" },
-  { id: "courtois", name: "Thibaut Courtois", country: "Belgium", countryCode: "BEL" },
-  { id: "alisson", name: "Alisson Becker", country: "Brazil", countryCode: "BRA" },
   { id: "pickford", name: "Jordan Pickford", country: "England", countryCode: "ENG" },
   { id: "maignan", name: "Mike Maignan", country: "France", countryCode: "FRA" },
-  { id: "usimon", name: "Unai Simón", country: "Spain", countryCode: "ESP" },
-  { id: "bounou", name: "Yassine Bounou", country: "Morocco", countryCode: "MAR" },
+  { id: "courtois", name: "Thibaut Courtois", country: "Belgium", countryCode: "BEL" },
 ];
 
 /** The four predictions a doctor locks in on the first screen. */
