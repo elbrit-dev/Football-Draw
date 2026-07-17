@@ -67,7 +67,7 @@ export default function PredictionPicker({ onLock }: PredictionPickerProps) {
         Predict the <span>FIFA World Cup Winners</span>
       </h1>
       <p className="sub pick-anim">
-        Get <b>all 4 Winners right</b> and win amazing prizes — winners announced after the World Cup 🏆
+        Get <b>all 4 Winners right</b> and win amazing prizes — winners announced after the World Cup Final 🏆
       </p>
 
       <div className="ball-hero pick-anim">
