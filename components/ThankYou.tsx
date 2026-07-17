@@ -57,7 +57,7 @@ export default function ThankYou({ data }: ThankYouProps) {
       <p className="ty1 ty-reveal">Predictions locked,</p>
       <p className="ty2 ty-reveal">{firstName(data.name)}</p>
       <p className="ty3 ty-reveal">
-        Your four calls are in. Get <b>all 4 right</b> and you&rsquo;re in line for the amazing prizes,
+        Get <b>all 4 right</b> and you&rsquo;re in line for the amazing prizes,
         announced by Elbrit after the Final. Good luck!
       </p>
 

@@ -39,11 +39,10 @@ export async function sendToErpnext(
   entry: StoredEntry
 ): Promise<{ ok: boolean; skipped?: boolean; detail?: string }> {
   const base = (process.env.ERP_URL || "https://erp.elbrit.org").replace(/\/+$/, "");
-  const formId = process.env.FORMS_PRO_FORM_ID;
-  if (!formId) {
-    // No form configured yet — skip ERP so we never post to the wrong form.
-    return { ok: false, skipped: true, detail: "FORMS_PRO_FORM_ID not set" };
-  }
+  // "FIFA Football Winners" Forms Pro form (route forms_pro_AgcOAlc6, docname
+  // 470breaqi8). Env var can override, but we default to the live form so the
+  // deployed app submits without extra configuration.
+  const formId = process.env.FORMS_PRO_FORM_ID || "470breaqi8";
 
   // list of { fieldname, value } — fieldnames match the Forms Pro form fields.
   const form_data: { fieldname: string; value: string | number }[] = [
@@ -68,7 +67,9 @@ export async function sendToErpnext(
     const res = await fetch(`${base}/api/method/${SUBMIT_METHOD}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ form_id: formId, form_data }),
+      // submission_status: "Submitted" marks the response as final (not a draft)
+      // — this is exactly what the Forms Pro web form itself sends.
+      body: JSON.stringify({ form_id: formId, form_data, submission_status: "Submitted" }),
     });
 
     if (!res.ok) {
