@@ -1,18 +1,22 @@
 import { StoredEntry } from "./types";
 
 /**
- * Pushes a lucky-draw entry into ERPNext via the Forms Pro public submission
- * API — the same endpoint the published "Lucky Draw" form uses
- * (route forms_pro_B4sebvHN, Form id 7upn0fs2f5). This is a guest method, so
- * no API key/secret is required; the record shows up under the form's
- * responses just like a normal submission.
+ * Pushes a World Cup prediction entry into ERPNext via the Forms Pro public
+ * submission API. This is a GUEST method, so no API key/secret is required; the
+ * record shows up under the form's responses like a normal public submission.
  *
  *   POST {ERP_URL}/api/method/forms_pro.api.submission.submit_form_response
  *   body: { form_id, form_data: [{ fieldname, value }, ...] }
  *
- * Env (optional — sensible defaults baked in):
+ * The `fieldname`s below must EXACTLY match the field names on your Forms Pro
+ * form (see ERP_SETUP.md). ERPNext ignores any fieldname it doesn't recognise,
+ * so a mismatch fails silently — double-check them.
+ *
+ * Env:
  *   ERP_URL             base URL (default https://erp.elbrit.org)
- *   FORMS_PRO_FORM_ID   Form id to submit to (default 7upn0fs2f5)
+ *   FORMS_PRO_FORM_ID   Form id to submit to — REQUIRED. Until it is set, ERP
+ *                       submission is skipped (the entry is still saved + logged),
+ *                       so we never post to the wrong form by accident.
  */
 
 const SUBMIT_METHOD = "forms_pro.api.submission.submit_form_response";
@@ -35,7 +39,11 @@ export async function sendToErpnext(
   entry: StoredEntry
 ): Promise<{ ok: boolean; skipped?: boolean; detail?: string }> {
   const base = (process.env.ERP_URL || "https://erp.elbrit.org").replace(/\/+$/, "");
-  const formId = process.env.FORMS_PRO_FORM_ID || "7upn0fs2f5";
+  const formId = process.env.FORMS_PRO_FORM_ID;
+  if (!formId) {
+    // No form configured yet — skip ERP so we never post to the wrong form.
+    return { ok: false, skipped: true, detail: "FORMS_PRO_FORM_ID not set" };
+  }
 
   // list of { fieldname, value } — fieldnames match the Forms Pro form fields.
   const form_data: { fieldname: string; value: string | number }[] = [

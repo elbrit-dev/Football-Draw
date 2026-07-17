@@ -870,9 +870,8 @@ h1 span { color: var(--red); }
 .team-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 22px;
   width: 100%;
-  max-width: 360px;
   margin-bottom: 6px;
 }
 .team-card {
