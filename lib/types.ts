@@ -3,14 +3,12 @@ export interface Team {
   code: string;
   /** Display name, e.g. "Spain". */
   name: string;
-  /** Path to a real flag image (public/); falls back to the inline SVG flag. */
-  flag?: string;
 }
 
 /** The two finalists the doctor chooses between for the Champion prediction. */
 export const TEAMS: Team[] = [
-  { code: "ESP", name: "Spain", flag: "/spain-flag.png" },
-  { code: "ARG", name: "Argentina", flag: "/argentina-flag.png" },
+  { code: "ESP", name: "Spain" },
+  { code: "ARG", name: "Argentina" },
 ];
 
 export interface PlayerOption {
